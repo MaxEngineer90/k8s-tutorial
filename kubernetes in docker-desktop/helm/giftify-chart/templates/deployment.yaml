@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: giftify-deployment
+  name: {{ include "giftify-chart.fullname" .}}
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: giftify
+      app: {{ .Values.image2.name }}
   template:
     metadata:
       labels:
-        app: giftify
+        app: {{ .Values.image2.name }}
     spec:
       containers:
         - name: giftify
-          image: heroshiagasa/giftify:latest
+          image: "{{ .Values.image2.repository }}:{{ .Values.image2.tag }}"
           ports:
-            - containerPort: 4080
+            - containerPort: {{.Values.service2.port}}
           env:
             - name: PORT
-              value: "4080"
+              value: "{{.Values.service2.port}}"
