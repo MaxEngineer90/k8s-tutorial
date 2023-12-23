@@ -1,15 +1,10 @@
-To switch your Kubernetes deployment and service configurations for **`giftify`** to Helm, you need to follow some steps. Helm makes it easier to manage and deploy applications on Kubernetes by using packages called charts. Here is a basic guide on how you can proceed:
-
-### **1. Install Helm**
-
-If you haven't installed Helm yet, start with the installation. Helm can be downloaded and installed from the official Helm website.
-
 ### **2. Create a [Helm Chart](giftify-chart)**
+
+#### * [Basic helm commands](BASIC-HELM-COMMAND)
 
 Create a Helm chart for your application. A chart is a Helm package that contains all the necessary resources and configurations to run an application (or a part of it) on Kubernetes.
 
 ```bash
-bashCopy code
 helm create giftify-chart
 ```
 
@@ -31,7 +26,6 @@ Use the **`giftify-chart/values.yaml`** file to define any configurable values u
 After making the configurations, you can install your Helm chart in your Kubernetes cluster:
 
 ```bash
-bashCopy code
 helm install giftify giftify-chart
 ```
 
@@ -40,7 +34,6 @@ helm install giftify giftify-chart
 If you want to make changes to your application, update the corresponding files in your Helm chart and apply the changes using Helm:
 
 ```bash
-bashCopy code
 helm upgrade giftify giftify-chart
 ```
 

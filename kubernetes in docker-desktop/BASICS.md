@@ -47,4 +47,4 @@ kubectl get pods
 ## **Step 5: Deployment**
 
 ### * [Simple deployment](SIMPLE-DEPLOYMENT-README.md)
-### * [Deployment with Helm](./helm/DEPLOYMENT-HELM-README.md)
+### * [Deployment with Helm](./helm/DEPLOYMENT-HELM.md)
