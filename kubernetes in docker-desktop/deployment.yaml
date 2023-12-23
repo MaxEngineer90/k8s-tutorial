@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: giftify-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: giftify
+  template:
+    metadata:
+      labels:
+        app: giftify
+    spec:
+      containers:
+        - name: giftify
+          image: heroshiagasa/giftify:latest
+          ports:
+            - containerPort: 4080
+          env:
+            - name: PORT
+              value: "4080"
