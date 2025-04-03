@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ml-tutorial
+  namespace: ml-tutorial
+  labels:
+    app.kubernetes.io/instance: ml-tutorial
+    app.kubernetes.io/name: ml-tutorial
+spec:
+  ingressClassName: {{ .Values.ingress.className | quote }}
+  rules:
+    - host: tutorial-k8s.maximilianlamm.de
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ml-tutorial
+                port:
+                  number: 80

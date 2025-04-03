@@ -1,2 +1,7 @@
 # k8s-tutorial
-Kubernetes Tutorial
+
+## commands
+
+```bash 
+kubectl --kubeconfig=~/.kube/do/tutorial-kubeconfig.yaml get nodes
+````

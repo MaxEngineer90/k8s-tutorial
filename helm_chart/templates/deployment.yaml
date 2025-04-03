@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: my-tutorial
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ .Release.Name }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: caddy
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - name: http
+              containerPort: 80
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+          volumeMounts:
+            - name: http-content
+              mountPath: /usr/share/caddy
+            - name: data
+              mountPath: /data
+            - name: config
+              mountPath: /config
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 20m
+              memory: 64Mi
+          livenessProbe:
+            tcpSocket:
+              port: 80
+          readinessProbe:
+            tcpSocket:
+              port: 80
+          startupProbe:
+            tcpSocket:
+              port: 80
+      volumes:
+        - name: http-content
+          configMap:
+            name: caddy-config
+            items:
+              - key: index.html
+                path: index.html
+        - name: data
+          emptyDir: { }
+        - name: config
+          emptyDir: { }
