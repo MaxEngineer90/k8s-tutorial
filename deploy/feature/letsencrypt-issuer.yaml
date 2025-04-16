@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: maximilianlamm.kontakt@outlook.de # 👉 hier deine E-Mail eintragen!
+    email: maximilianlamm.kontakt@outlook.de
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod-key

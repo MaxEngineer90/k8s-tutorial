@@ -3,7 +3,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
 branch='feature/**'
-helmPath="${SCRIPT_DIR}/../../helm_chart"
+helmPath="${SCRIPT_DIR}/../../caddy_chart"
 namespace='ml-tutorial'
 imageTag='2.9.1-alpine'
 imageRepository='caddy'

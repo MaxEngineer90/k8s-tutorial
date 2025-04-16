@@ -6,8 +6,14 @@ metadata:
   labels:
     app.kubernetes.io/instance: ml-tutorial
     app.kubernetes.io/name: ml-tutorial
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: {{ .Values.ingress.className | quote }}
+  tls:
+    - hosts:
+        - tutorial-k8s.maximilianlamm.de
+      secretName: tutorial-k8s-tls
   rules:
     - host: tutorial-k8s.maximilianlamm.de
       http:
